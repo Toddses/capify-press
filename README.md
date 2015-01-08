@@ -24,16 +24,20 @@ Edit the required settings in ./config/deploy.rb :
 # Required Settings
 # ==================
 
-set :application, "tester"
+set :application, "example"
 set :wp_version, "4.1"
-set :repo_url, "git@github.com:Toddses/tester.git"
-set :admin_email, "todd@rainydaymedia.net"
+set :repo_url, "git@github.com:User/example.git"
+set :admin_email, "user@example.com"
 
-set :local_url, "http://hockinghills.dev"
-set :local_path, "/var/www/html/tester"
+set :local_url, "http://localhost"
+set :local_path, "/var/www/html/example"
 ```
 
-Copy the ex-database.yml file to database.yml and fill in your own details for each environment. Prefix is the table prefix WordPress will use for each environment. Do not include this file in any repo!
+Set up your database info :
+
+	cp ./config/ex-database.yml ./config/database.yml
+
+Edit database.yml with your own details for each environment. Prefix is the table prefix WordPress will use for each environment. Do not include this file in any repo!
 
 Three environments will be created by default :
 
@@ -77,7 +81,7 @@ Install and set up WordPress locally with :
 
 	cap local wp:local:install
 
-This is install WordPress based on your settings and create a mysql database, initialize a git repo with three branches (dev, staging, master), and push the files to the remote repository. You must then set up WordPress by visiting the site and following the instructions.
+This will install WordPress based on your settings and create a mysql database, initialize a git repo with three branches (dev, staging, master), and push the files to the remote repository. You must then set up WordPress by visiting the local site and following the instructions.
 
 To deploy your site from git into an environment use :
 
