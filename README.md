@@ -61,7 +61,7 @@ set :branch, "master"
 
 set :wp_debug, true
 set :wp_cache, false
-```ruby
+```
 
 You can leave ./config/deploy/local.rb alone.
 
