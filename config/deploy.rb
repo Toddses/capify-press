@@ -2,10 +2,10 @@
 lock '3.3.5'
 
 # slack configuration
-require './config/slack'
+require "./config/slack"
 
-set :application, 'hockinghills'
-set :repo_url, 'git@github.com:RainyDayMedia/hockinghills.git'
+set :application, "tester"
+set :repo_url, "git@github.com:Toddses/tester.git"
 
 # Default branch is :master
 # set :branch, 'test'
@@ -43,6 +43,9 @@ set :linked_dirs, %w{wp-content/uploads}
 # Some additional vars we will need
 set :admin_email, "todd@rainydaymedia.net"
 set :local_url, "http://hockinghills.dev"
+set :local_path, "/var/www/html/tester"
+
+set :wp_version, "4.1"
 
 namespace :deploy do
 

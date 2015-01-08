@@ -33,16 +33,8 @@ define('DB_CHARSET', 'utf8');
 /** The Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
 
-/** Set up the blog and site url */
-// These are commented out as I don't totally see the point.
-// The values are already set in the database to the same values.
-// So it seems redundant to override them here.
-// But I don't want to totally remove them, because who knows what may come up.
-//define( 'WP_HOME', '<%= siteurl %>');
-//define( 'WP_SITEURL', WP_HOME);
-
 /** A few additional global variables */
-define( 'WP_CACHE', <%= wp_cache %> );
+define( 'WP_CACHE', <%= fetch(:wp_cache) %> );
 
 /**#@+
  * Authentication Unique Keys and Salts.
@@ -79,7 +71,7 @@ $table_prefix  = '<%= database['prefix'] %>_';
  * It is strongly recommended that plugin and theme developers use WP_DEBUG
  * in their development environments.
  */
-define( 'WP_DEBUG', <%= wp_debug %> );
+define( 'WP_DEBUG', <%= fetch(:wp_debug) %> );
 
 /* That's all, stop editing! Happy blogging. */
 

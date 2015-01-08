@@ -1,7 +1,7 @@
 <VirtualHost *:80>
-	ServerAdmin <%= admin_email %>
-	ServerName <%= server_name %>
-	DocumentRoot <%= doc_root %>
+	ServerAdmin <%= fetch(:admin_email) %>
+	ServerName <%= fetch(:server_name) %>
+	DocumentRoot <%= fetch(:doc_root) %>
 	ErrorLog ${APACHE_LOG_DIR}/error.log
 	CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
