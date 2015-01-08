@@ -20,16 +20,18 @@ Create a remote repository somewhere, for instance at [GitHub]() or [BitBucket](
 
 Edit the required settings in ./config/deploy.rb :
 
-	# Required Settings
-	# ==================
+```ruby
+# Required Settings
+# ==================
 
-	set :application, "tester"
-	set :wp_version, "4.1"
-	set :repo_url, "git@github.com:Toddses/tester.git"
-	set :admin_email, "todd@rainydaymedia.net"
+set :application, "tester"
+set :wp_version, "4.1"
+set :repo_url, "git@github.com:Toddses/tester.git"
+set :admin_email, "todd@rainydaymedia.net"
 
-	set :local_url, "http://hockinghills.dev"
-	set :local_path, "/var/www/html/tester"
+set :local_url, "http://hockinghills.dev"
+set :local_path, "/var/www/html/tester"
+```
 
 Copy the ex-database.yml file to database.yml and fill in your own details for each environment. Prefix is the table prefix WordPress will use for each environment. Do not include this file in any repo!
 
@@ -41,23 +43,25 @@ Three environments will be created by default :
 
 Edit the settings in ./config/deploy/staging.rb and/or ./config/deploy/production.rb with your own info :
 
-	# Required Settings
-	# ==================
+```ruby
+# Required Settings
+# ==================
 
-	server "xxx.xxx.xxx.xxx", user: "your_ssh_user", roles: %w{web app db}
-	set :stage_url, "http://example.com"
-	set :deploy_to, '/var/www/example'
+server "xxx.xxx.xxx.xxx", user: "your_ssh_user", roles: %w{web app db}
+set :stage_url, "http://example.com"
+set :deploy_to, '/var/www/example'
 
-	# Git Setup
-	# ==================
+# Git Setup
+# ==================
 
-	set :branch, "master"
+set :branch, "master"
 
-	# WordPress Setup
-	# ==================
+# WordPress Setup
+# ==================
 
-	set :wp_debug, true
-	set :wp_cache, false
+set :wp_debug, true
+set :wp_cache, false
+```ruby
 
 You can leave ./config/deploy/local.rb alone.
 
