@@ -1,0 +1,5 @@
+# ignore capistrano special directory
+.capistrano
+
+# ignore database info if it exists, just in case
+config/database.yml

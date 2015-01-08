@@ -1,0 +1,30 @@
+# Basic WordPress access file with postname permalink structure
+# Requires the Apache rewrite mod to be enabled
+
+# Rewrites / permalinks
+# ===============================
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
+
+# WordPress security
+# ===============================
+
+<files .htaccess>
+order allow,deny
+deny from all
+</files>
+
+<files wp-config.php>
+order allow,deny
+deny from all
+</files>

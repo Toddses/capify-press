@@ -1,0 +1,19 @@
+# database setup for all three basic environments
+staging:
+  host: localhost
+  database: database
+  username: username
+  password: 'password'
+  prefix: wp
+production:
+  host: localhost
+  database: database
+  username: username
+  password: 'password'
+  prefix: wp
+local:
+  host: localhost
+  database: database
+  username: username
+  password: 'password'
+  prefix: wp
