@@ -7,18 +7,20 @@
 #role :app, %w{root@104.236.11.75}
 #role :web, %w{root@104.236.11.75}
 #role :db,  %w{root@104.236.11.75}
-set :stage, :staging
-set :stage_url, "http://hockinghills.makitra.in"
-set :deploy_to, '/var/www/hockinghills'
+
+# Required Settings
+# ==================
 
 server "104.236.11.75", user: "root", roles: %w{web app db}
+set :stage_url, "http://hockinghills.makitra.in"
+set :deploy_to, '/var/www/hockinghills'
 
 # Git Setup
 # ==================
 
 set :branch, "test"
 
-# Git Setup
+# WordPress Setup
 # ==================
 
 set :wp_debug, true

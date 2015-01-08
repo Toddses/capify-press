@@ -4,8 +4,16 @@ lock '3.3.5'
 # slack configuration
 require "./config/slack"
 
-set :application, "tester"
-set :repo_url, "git@github.com:Toddses/tester.git"
+# Required Settings
+# ==================
+
+set :application, "example"
+set :wp_version, "4.1"
+set :repo_url, "git@github.com:User/example.git"
+set :admin_email, "user@example.com"
+
+set :local_url, "http://localhost"
+set :local_path, "/var/www/html/example"
 
 # Default branch is :master
 # set :branch, 'test'
@@ -39,13 +47,6 @@ set :linked_dirs, %w{wp-content/uploads}
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
-
-# Some additional vars we will need
-set :admin_email, "todd@rainydaymedia.net"
-set :local_url, "http://hockinghills.dev"
-set :local_path, "/var/www/html/tester"
-
-set :wp_version, "4.1"
 
 namespace :deploy do
 
