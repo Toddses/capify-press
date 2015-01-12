@@ -15,6 +15,8 @@ set :admin_email, "user@example.com"
 set :local_url, "http://localhost"
 set :local_path, "/var/www/html/example"
 
+set :log_level, :error
+
 # Default branch is :master
 # set :branch, 'test'
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
