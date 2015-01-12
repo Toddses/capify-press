@@ -2,11 +2,11 @@
 
 A framework for installing and deploying WordPress websites with Capistrano 3.
 
-### Requirements
+## Requirements
 
 Make sure you have Ruby installed. [RVM](https://rvm.io/) is a good option for managing Ruby and Rubygems. [Git](http://git-scm.com/) is also required. You must have already installed your ssh keys into your remote repository and the environments you'll be deploying to.
 
-### Installation
+## Installation
 
 Clone this repo into a deployment directory of your choosing and run the installer:
 
@@ -71,7 +71,19 @@ You can leave ./config/deploy/local.rb alone.
 
 You're good to go!
 
-### Usage
+### Slack
+
+Slack integration provided by [capistrano-slackify](https://github.com/onthebeach/capistrano-slackify). In slack, ensure you have enabled the [incoming webhooks integration](https://api.slack.com/). Edit in .config/slack.rb with your webhook url provided in the setup instructions : 
+
+```ruby
+# Required Setting
+# ==================
+set :slack_url, 'https://hooks.slack.com/services/xxxxxxx'
+```
+
+There are also a number of optional settings you can customize. The task will run automatically during deployments.
+
+## Usage
 
 You can see all described tasks at any time with the command :
 
