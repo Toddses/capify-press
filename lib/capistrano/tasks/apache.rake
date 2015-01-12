@@ -31,11 +31,6 @@ namespace :apache do
 			invoke "apache:vhost:build_data"
 
 			on roles(:web) do
-				# set up the data for the configuration template
-				admin_email = fetch(:admin_email)
-				doc_root = fetch(:doc_root)
-				server_name = fetch(:server_name)
-
 				# create and upload the configuration
         		conf_file = ERB.new(File.read('config/templates/apache.conf.erb')).result(binding)
         		io = StringIO.new(conf_file)
