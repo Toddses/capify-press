@@ -1,6 +1,6 @@
 # capify-press
 
-A framework for installing and deploying WordPress websites with Capistrano 3.
+A framework for managing WordPress websites with multiple server environments using Capistrano 3.
 
 ## Requirements
 
