@@ -1,8 +1,8 @@
-# Basic WordPress access file with postname permalink structure
-# Requires the Apache rewrite mod to be enabled
+# Basic .htaccess file for postname permalinks
+# Apache rewrite module must be enabled
 
-# Rewrites / permalinks
-# ===============================
+# Rewrites / Permalinks
+# =====================
 
 # BEGIN WordPress
 <IfModule mod_rewrite.c>
@@ -17,7 +17,7 @@ RewriteRule . /index.php [L]
 # END WordPress
 
 # WordPress security
-# ===============================
+# ==================
 
 <files .htaccess>
 order allow,deny
