@@ -32,13 +32,13 @@ namespace :apache do
 
 			on roles(:web) do
 				# create and upload the configuration
-        		conf_file = ERB.new(File.read('config/templates/apache.conf.erb')).result(binding)
-        		io = StringIO.new(conf_file)
-        		upload! io, File.join("/etc/apache2/sites-available", fetch(:conf_filename))
+				conf_file = ERB.new(File.read('config/templates/apache.conf.erb')).result(binding)
+				io = StringIO.new(conf_file)
+				upload! io, File.join("/etc/apache2/sites-available", fetch(:conf_filename))
 
-        		# enable the new vhost and restart the server
-        		execute :a2ensite, fetch(:conf_filename)
-        		execute :service, "apache2 restart"
+				# enable the new vhost and restart the server
+				execute :a2ensite, fetch(:conf_filename)
+				execute :service, "apache2 restart"
 			end
 		end
 
