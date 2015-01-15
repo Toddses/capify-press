@@ -2,7 +2,7 @@ namespace :wp do
 
 	namespace :local do
 
-		desc "Install WordPress and set up the repo and database"
+		desc "Install WordPress locally and set up the repo and database"
 		task :install do
 			# clone the selected version of wordpress to the local server
 			invoke "wp:local:wp_clone"

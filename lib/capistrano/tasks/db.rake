@@ -56,7 +56,7 @@ namespace :db do
 		end
 	end
 
-	desc "Pulls a remote export of the database and imports to the local server"
+	desc "Pulls a remote export of the MySQL database and imports to the local server"
 	task :pull do
 		invoke "db:get_backup_name"
 

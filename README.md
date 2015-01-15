@@ -24,22 +24,22 @@ $ bundle install
 
 Create a remote repository somewhere, for instance at [GitHub](https://github.com/) or [BitBucket](https://bitbucket.org/).
 
-Edit the required settings in `config/deploy.rb` :
+Edit the required settings in `config/deploy.rb`:
 
 ``` ruby
 # Required Settings
 # ==================
 
-set :application, "example"
-set :wp_version, "4.1"
-set :repo_url, "git@github.com:User/example.git"
-set :admin_email, "user@example.com"
+set:application, "example"
+set:wp_version, "4.1"
+set:repo_url, "git@github.com:User/example.git"
+set:admin_email, "user@example.com"
 
-set :local_url, "http://localhost"
-set :local_path, "/var/www/html/example"
+set:local_url, "http://localhost"
+set:local_path, "/var/www/html/example"
 ```
 
-Set up your database info :
+Set up your database info:
 
 ``` sh
 $ cd config
@@ -48,7 +48,7 @@ $ cp ex-database.yml database.yml
 
 Edit `database.yml` with your own details for each environment. Prefix is the table prefix WordPress will use for each environment. Do not include this file in any repo!
 
-Three environments will be created by default :
+Three environments will be created by default:
 
 ``` sh
 $ ls config/deploy
@@ -57,47 +57,55 @@ staging.rb
 production.rb
 ```
 
-Edit the settings in `staging.rb` and/or `production.rb` with your own info :
+Edit the settings in `staging.rb` and/or `production.rb` with your own info:
 
 ```ruby
 # Required Settings
 # ==================
 
 server "xxx.xxx.xxx.xxx", user: "your_ssh_user", roles: %w{web app db}
-set :stage_url, "http://example.com"
-set :deploy_to, '/var/www/example'
+set:stage_url, "http://example.com"
+set:deploy_to, '/var/www/example'
 
 # Git Setup
 # ==================
 
-set :branch, "master"
+set:branch, "master"
 
 # WordPress Setup
 # ==================
 
-set :wp_debug, true
-set :wp_cache, false
+set:wp_debug, true
+set:wp_cache, false
 ```
 
-You can leave `local.rb` alone.
+You can leave `local.rb` alone. For now, it is mostly for semantic purposes.
 
 You're good to go!
 
+### Adding Environments
+
+You can add or change environments as needed. Say you want to change staging to test, simply rename `staging.rb` to `test.rb`. If you'd like to create additional environments, copy one of the stage files and edit the settings from there:
+
+``` sh
+$ cp config/deploy/staging.rb config/deploy/test.rb
+```
+
 ### Slack
 
-Slack integration provided by [capistrano-slackify](https://github.com/onthebeach/capistrano-slackify). In slack, ensure you have enabled the [incoming webhooks integration](https://api.slack.com/). Edit `config/slack.rb` with your webhook url provided in the setup instructions : 
+Slack integration provided by [capistrano-slackify](https://github.com/onthebeach/capistrano-slackify). In slack, ensure you have enabled the [incoming webhooks integration](https://api.slack.com/). Edit `config/slack.rb` with your webhook url provided in the setup instructions: 
 
 ```ruby
 # Required Setting
 # ==================
-set :slack_url, 'https://hooks.slack.com/services/xxxxxxx'
+set:slack_url, 'https://hooks.slack.com/services/xxxxxxx'
 ```
 
 There are also a number of optional settings you can customize. The task will run automatically during deployments.
 
 ## Usage
 
-You can see all described tasks at any time with the command :
+You can see all described tasks at any time with the command:
 
 ``` sh
 $ cap -T
@@ -105,15 +113,14 @@ $ cap -T
 
 ### Commands
 
-* **cap stage deploy** : 
-* **cap local wp:local:install** : Install WordPress and set up the repo and database
-* **cap stage wp:remote:push** : Deploy the site and push the database and uploads from the local server
-* **cap stage wp:remote:pull** : Clone a remote repository and pull the database and uploads from the stage server
-* **cap stage db:push** : Pushes a local export of the MySQL database to the remote server
-* **cap stage db:pull** : Pulls a remote export of the database and imports to the local server
-* **cap stage uploads:push** : Transfer local uploads content to remote server
-* **cap stage uploads:pull** : Transfer remote uploads content to local server
-
+* **cap stage deploy**: Deploy the site from the repository to the remote server
+* **cap local wp:local:install**: Install WordPress locally and set up the repo and database
+* **cap stage wp:remote:push**: Deploy the site and push the database and uploads from the local server
+* **cap stage wp:remote:pull**: Clone a remote repository and pull the database and uploads from the stage server
+* **cap stage db:push**: Pushes a local export of the MySQL database to the remote server
+* **cap stage db:pull**: Pulls a remote export of the MySQL database and imports to the local server
+* **cap stage uploads:push**: Transfer local uploads content to remote server
+* **cap stage uploads:pull**: Transfer remote uploads content to local server
 
 #### cap stage deploy
 
@@ -123,8 +130,16 @@ $ cap -T
 
 #### cap stage wp:remote:pull
 
+#### cap stage db:push
+
+#### cap stage db:pull
+
+#### cap stage uploads:push
+
+#### cap stage uploads:pull
 
 
+~~
 	$ cap local wp:local:install
 
 Clones the official WordPress repository (whichever version you have in the settings) to your local path and creates the local wp-config and .htaccess. Will then initialize the git repository, create three branches (master, staging, dev) and push everything to the remote repository for an initial commit. Finally, will create the local database on the mysql server. After its all said and done, just visit your local site and complete the WordPress install.
@@ -136,6 +151,7 @@ Deploys from the remote repository to the stage in the command. This will automa
 	$ cap stage deploy
 
 Will deploy your site from the remote repository to the stage in the command. Nothing else will be pushed to the server, just the code from the repository.
+~~
 
 ## License
 
