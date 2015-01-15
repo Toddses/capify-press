@@ -112,8 +112,8 @@ $ cap -T
 
 ### Commands
 
-* **cap stage deploy**: Deploy the site from the repository to the remote server
 * **cap local wp:local:install**: Install WordPress locally and set up the repo and database
+* **cap stage deploy**: Deploy the site from the repository to the remote server
 * **cap stage wp:remote:push**: Deploy the site and push the database and uploads from the local server
 * **cap stage wp:remote:pull**: Clone a remote repository and pull the database and uploads from the stage server
 * **cap stage db:push**: Pushes a local export of the MySQL database to the remote server
