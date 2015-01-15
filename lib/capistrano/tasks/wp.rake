@@ -122,7 +122,7 @@ namespace :wp do
 	namespace :remote do
 
 		desc "Deploy the site and push the database and uploads from the local server"
-		task :install do
+		task :push do
 			# deploy the site from git
 			invoke "deploy"
 
