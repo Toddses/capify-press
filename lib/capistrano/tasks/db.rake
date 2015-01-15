@@ -3,7 +3,6 @@ namespace :db do
 	# Creates a backup filename based on the server date / time.
 	task :get_backup_name do
 		on roles(:db) do
-
 			execute :mkdir, "-p #{shared_path}/db-backups"
 
 			now = Time.now
