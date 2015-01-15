@@ -1,6 +1,6 @@
 # capify-press
 
-A framework for managing WordPress websites with multiple server environments using [Capistrano 3](http://capistranorb.com/).
+A framework for managing and deploying WordPress websites with multiple server environments using [Capistrano 3](http://capistranorb.com/).
 
 ## Requirements
 
