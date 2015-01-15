@@ -1,27 +1,17 @@
-# Simple Role Syntax
-# ==================
-# Supports bulk-adding hosts to roles, the primary server in each group
-# is considered to be the first unless any hosts have the primary
-# property set.  Don't declare `role :all`, it's a meta role.
-
-#role :app, %w{root@104.236.11.75}
-#role :web, %w{root@104.236.11.75}
-#role :db,  %w{root@104.236.11.75}
-
 # Required Settings
-# ==================
+# =================
 
-server "104.236.11.75", user: "root", roles: %w{web app db}
-set :stage_url, "http://hockinghills.makitra.in"
-set :deploy_to, '/var/www/hockinghills'
+server "xxx.xxx.xxx.xxx", user: "your_ssh_user", roles: %w{web app db}
+set :stage_url, "http://example.com"
+set :deploy_to, '/var/www/example'
 
 # Git Setup
-# ==================
+# =========
 
-set :branch, "test"
+set :branch, "master"
 
 # WordPress Setup
-# ==================
+# ===============
 
 set :wp_debug, true
 set :wp_cache, false

@@ -1,13 +1,20 @@
-# Simple Role Syntax
-# ==================
-# Supports bulk-adding hosts to roles, the primary server in each group
-# is considered to be the first unless any hosts have the primary
-# property set.  Don't declare `role :all`, it's a meta role.
+# Required Settings
+# =================
 
-role :app, %w{deploy@example.com}
-role :web, %w{deploy@example.com}
-role :db,  %w{deploy@example.com}
+server "xxx.xxx.xxx.xxx", user: "your_ssh_user", roles: %w{web app db}
+set :stage_url, "http://example.com"
+set :deploy_to, '/var/www/example'
 
+# Git Setup
+# =========
+
+set :branch, "master"
+
+# WordPress Setup
+# ===============
+
+set :wp_debug, true
+set :wp_cache, false
 
 # Extended Server Syntax
 # ======================
@@ -15,7 +22,7 @@ role :db,  %w{deploy@example.com}
 # server list. The second argument is a, or duck-types, Hash and is
 # used to set extended properties on the server.
 
-server 'example.com', user: 'deploy', roles: %w{web app}, my_property: :my_value
+# server 'example.com', user: 'deploy', roles: %w{web app}, my_property: :my_value
 
 
 # Custom SSH Options

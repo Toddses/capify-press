@@ -1,12 +1,15 @@
 # Slack Config
-# ===============================
+# ============
 
-# Required Setting
-# ==================
-set :slack_url, 'https://hooks.slack.com/services/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'
+# Required Settings
+# =================
 
-# fun optional customizations
-set :slack_channel, '#devchat'
+set :slack_url, 'https://hooks.slack.com/services/xxxxxxx'
+
+# Optional Settings
+# =================
+
+#set :slack_channel, '#general'
 set :slack_username, 'Deploybot'
 set :slack_emoji, ':satellite:'
 #set :slack_user, ENV['GIT_AUTHOR_NAME']
