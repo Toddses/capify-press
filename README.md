@@ -24,7 +24,7 @@ $ bundle install
 
 Create a remote repository somewhere, for instance at [GitHub](https://github.com/) or [BitBucket](https://bitbucket.org/).
 
-Edit the required settings in { config/deploy.rb } :
+Edit the required settings in `config/deploy.rb` :
 
 ``` ruby
 # Required Settings
@@ -46,7 +46,7 @@ $ cd config
 $ cp ex-database.yml database.yml
 ```
 
-Edit { database.yml } with your own details for each environment. Prefix is the table prefix WordPress will use for each environment. Do not include this file in any repo!
+Edit `database.yml` with your own details for each environment. Prefix is the table prefix WordPress will use for each environment. Do not include this file in any repo!
 
 Three environments will be created by default :
 
@@ -57,7 +57,7 @@ staging.rb
 production.rb
 ```
 
-Edit the settings in { staging.rb } and/or { production.rb } with your own info :
+Edit the settings in `staging.rb` and/or `production.rb` with your own info :
 
 ```ruby
 # Required Settings
@@ -79,13 +79,13 @@ set :wp_debug, true
 set :wp_cache, false
 ```
 
-You can leave { local.rb } alone.
+You can leave `local.rb` alone.
 
 You're good to go!
 
 ### Slack
 
-Slack integration provided by [capistrano-slackify](https://github.com/onthebeach/capistrano-slackify). In slack, ensure you have enabled the [incoming webhooks integration](https://api.slack.com/). Edit { config/slack.rb } with your webhook url provided in the setup instructions : 
+Slack integration provided by [capistrano-slackify](https://github.com/onthebeach/capistrano-slackify). In slack, ensure you have enabled the [incoming webhooks integration](https://api.slack.com/). Edit `config/slack.rb` with your webhook url provided in the setup instructions : 
 
 ```ruby
 # Required Setting
