@@ -121,11 +121,11 @@ $ cap -T
 * **cap stage uploads:push**: Transfer local uploads content to remote server
 * **cap stage uploads:pull**: Transfer remote uploads content to local server
 
-Each of these tasks takes care of the basic legwork for you. Installing WordPress will create the database, if necessary, set up your local config files (`wp-config.php` and `.htaccess`), start your repo with a `.gitignore` that's good for WordPress and a basic README, and push it to the remote repo with an initial commit. All you have to do is visit the local site in a browser and complete the WordPress installation.
+Each of these tasks takes care of the basic legwork for you. Installing WordPress will create the database, if it doesn't exist, set up your local config files (`wp-config.php` and `.htaccess`), start your repo with a `.gitignore` that's good for WordPress and a basic README, and push it to the remote repo with an initial commit. All you have to do is visit the local site in a browser and complete the WordPress installation.
 
 Deploying will create the config files for the stage automatically.
 
-Pushing/pulling the database will replace the URLs in the database, as well as the table prefixes, so you can bring up the site with no additional set up necessary. **NOTE**: Push and Pull currently DROP the existing tables if they exist. This means you **will ovewrite all data**. So be sure you want to perform this action before you run the task. It is in our future plans to create tasks for more of a merging option for incremental database updates as opposed to full data replacement.
+Pushing/pulling the database will replace the URLs in the database, as well as the table prefixes, so you can bring up the site with no additional set up necessary. **NOTE**: Push and Pull currently **DROP** the existing tables if they exist. This means you will **ovewrite all data**. So be sure you want to perform this action before you run the task. It is in my future plans to create tasks for more of a merging option for incremental database updates as opposed to full data replacement.
 
 Pushing/pulling the uploads will not overwrite, but merge. Existing files will be overwritten, but new files will not be deleted.
 
