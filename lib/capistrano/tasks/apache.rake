@@ -1,10 +1,10 @@
 namespace :apache do
 
-	desc "Set up the apache server with the rewrite module (usually it is not already enabled) and disable the default site"
+	desc "Set up the apache server with the rewrite module (usually it is not already enabled)"
 	task :setup do
 		on roles(:web) do
 			execute :a2enmod, "rewrite"
-			execute :a2dissite, "000-default.conf"
+			#execute :a2dissite, "000-default.conf"
 
 			# restart the server for the changes to take effect
 			execute :service, "apache2 restart"
