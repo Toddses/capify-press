@@ -6,9 +6,7 @@ A framework for managing WordPress websites with multiple server environments us
 
 * Ruby >= 1.9.3
 
-More information on Ruby installation.
-
-~~Make sure you have Ruby installed. [RVM](https://rvm.io/) is a good option for managing Ruby and Rubygems. [Git](http://git-scm.com/) is also required. You must have already installed your ssh keys into your remote repository and the environments you'll be deploying to.~~
+[RVM](https://rvm.io/) is a good option for managing Ruby and Gems. [Git](http://git-scm.com/) is also required. You must have already installed your ssh keys into your remote repository and the environments you'll be deploying to.
 
 ## Installation
 
@@ -122,36 +120,25 @@ $ cap -T
 * **cap stage uploads:push**: Transfer local uploads content to remote server
 * **cap stage uploads:pull**: Transfer remote uploads content to local server
 
-#### cap stage deploy
+Each of these tasks takes care of the basic legwork for you. Installing WordPress will create the database, if necessary, set up your local config files (`wp-config.php` and `.htaccess`), start your repo with a `.gitignore` that's good for WordPress and a basic README, and push it to the remote repo with an initial commit.
 
-#### cap local wp:local:install
+Deploying will create the config files for the stage automatically.
 
-#### cap stage wp:remote:push
+Pushing/pulling the database will replace the URLs in the database, as well as the table prefixes, so you can bring up the site with no additional set up necessary.
 
-#### cap stage wp:remote:pull
+Pushing/pulling the uploads will not overwrite, but merge. Existing files will be overwritten, but new files will not be deleted.
 
-#### cap stage db:push
+### Additional Commands
 
-#### cap stage db:pull
+If your remote server is running Apache 2, there's already a few tasks to automate the basics. These can easily be extended to handle more of the legwork, and additional tasks for different servers may be added in the future.
 
-#### cap stage uploads:push
+* **cap stage apache:setup**: Enable the rewrite module (usually it is not already enabled)
+* **cap stage apache:vhost:create**: Create an apache configuration file and enable the site
+* **cap stage apache:vhost:destroy**: Delete the apache configuration file and disable the site
 
-#### cap stage uploads:pull
+The vhost tasks will set up the host with the stage URL you have set.
 
-
-~~
-	$ cap local wp:local:install
-
-Clones the official WordPress repository (whichever version you have in the settings) to your local path and creates the local wp-config and .htaccess. Will then initialize the git repository, create three branches (master, staging, dev) and push everything to the remote repository for an initial commit. Finally, will create the local database on the mysql server. After its all said and done, just visit your local site and complete the WordPress install.
-
-	$ cap stage wp:remote:install
-
-Deploys from the remote repository to the stage in the command. This will automatically set up your remote config files, set up and push your local database to the stage mysql server, and push your local uploads files to the stage server. The URLs in the database will automatically be updated to the correct URLs for the stage site. Your site is now ready to go on your stage server, no need to bring up the site and complete the WordPress installation.
-
-	$ cap stage deploy
-
-Will deploy your site from the remote repository to the stage in the command. Nothing else will be pushed to the server, just the code from the repository.
-~~
+Feel free to fork this project and create pull requests for any additional tasks you may have created!
 
 ## License
 
