@@ -1,6 +1,6 @@
 # capify-press
 
-A framework for managing WordPress websites with multiple server environments using Capistrano 3.
+A framework for managing WordPress websites with multiple server environments using [Capistrano 3](http://capistranorb.com/).
 
 ## Requirements
 
@@ -13,7 +13,7 @@ A framework for managing WordPress websites with multiple server environments us
 Clone this repo into a deployment directory of your choosing and run the installer:
 
 ``` sh
-$ git clone git@github.com:Toddses/cap-press.git /home/user/deployments/example
+$ git clone git@github.com:Toddses/capify-press.git /home/user/deployments/example
 $ cd /home/user/deployments/example
 $ bundle install
 ```
@@ -26,15 +26,15 @@ Edit the required settings in `config/deploy.rb`:
 
 ``` ruby
 # Required Settings
-# ==================
+# =================
 
-set:application, "example"
-set:wp_version, "4.1"
-set:repo_url, "git@github.com:User/example.git"
-set:admin_email, "user@example.com"
+set :application, "example"
+set :wp_version, "4.1"
+set :repo_url, "git@github.com:User/example.git"
+set :admin_email, "user@example.com"
 
-set:local_url, "http://localhost"
-set:local_path, "/var/www/html/example"
+set :local_url, "http://localhost"
+set :local_path, "/var/www/html/example"
 ```
 
 Set up your database info:
@@ -59,22 +59,22 @@ Edit the settings in `staging.rb` and/or `production.rb` with your own info:
 
 ```ruby
 # Required Settings
-# ==================
+# =================
 
 server "xxx.xxx.xxx.xxx", user: "your_ssh_user", roles: %w{web app db}
-set:stage_url, "http://example.com"
-set:deploy_to, '/var/www/example'
+set :stage_url, "http://example.com"
+set :deploy_to, '/var/www/example'
 
 # Git Setup
-# ==================
+# =========
 
-set:branch, "master"
+set :branch, "master"
 
 # WordPress Setup
-# ==================
+# ===============
 
-set:wp_debug, true
-set:wp_cache, false
+set :wp_debug, true
+set :wp_cache, false
 ```
 
 You can leave `local.rb` alone. For now, it is mostly for semantic purposes.
@@ -94,8 +94,9 @@ $ cp config/deploy/staging.rb config/deploy/test.rb
 Slack integration provided by [capistrano-slackify](https://github.com/onthebeach/capistrano-slackify). In slack, ensure you have enabled the [incoming webhooks integration](https://api.slack.com/). Edit `config/slack.rb` with your webhook url provided in the setup instructions: 
 
 ```ruby
-# Required Setting
-# ==================
+# Required Settings
+# =================
+
 set:slack_url, 'https://hooks.slack.com/services/xxxxxxx'
 ```
 
