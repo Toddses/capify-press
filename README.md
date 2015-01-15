@@ -1,4 +1,4 @@
-# cap-press
+# capify-press
 
 A framework for installing and deploying WordPress websites with Capistrano 3.
 
