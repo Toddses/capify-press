@@ -4,23 +4,29 @@ A framework for installing and deploying WordPress websites with Capistrano 3.
 
 ## Requirements
 
-Make sure you have Ruby installed. [RVM](https://rvm.io/) is a good option for managing Ruby and Rubygems. [Git](http://git-scm.com/) is also required. You must have already installed your ssh keys into your remote repository and the environments you'll be deploying to.
+* Ruby >= 1.9.3
+
+More information on Ruby installation.
+
+~~Make sure you have Ruby installed. [RVM](https://rvm.io/) is a good option for managing Ruby and Rubygems. [Git](http://git-scm.com/) is also required. You must have already installed your ssh keys into your remote repository and the environments you'll be deploying to.~~
 
 ## Installation
 
 Clone this repo into a deployment directory of your choosing and run the installer:
 
-	$ git clone git@github.com:Toddses/cap-press.git /home/user/deployments/example
-	$ cd /home/user/deployments/example
-	$ bundle install
+``` sh
+$ git clone git@github.com:Toddses/cap-press.git /home/user/deployments/example
+$ cd /home/user/deployments/example
+$ bundle install
+```
 
 ### Setup
 
-Create a remote repository somewhere, for instance at [GitHub]() or [BitBucket]().
+Create a remote repository somewhere, for instance at [GitHub](https://github.com/) or [BitBucket](https://bitbucket.org/).
 
-Edit the required settings in ./config/deploy.rb :
+Edit the required settings in { config/deploy.rb } :
 
-```ruby
+``` ruby
 # Required Settings
 # ==================
 
@@ -35,17 +41,23 @@ set :local_path, "/var/www/html/example"
 
 Set up your database info :
 
-	$ cp ./config/ex-database.yml ./config/database.yml
+``` sh
+$ cd config
+$ cp ex-database.yml database.yml
+```
 
-Edit database.yml with your own details for each environment. Prefix is the table prefix WordPress will use for each environment. Do not include this file in any repo!
+Edit { database.yml } with your own details for each environment. Prefix is the table prefix WordPress will use for each environment. Do not include this file in any repo!
 
 Three environments will be created by default :
 
-	./config/deploy/local.rb
-	./config/deploy/staging.rb
-	./config/deploy/production.rb
+``` sh
+$ ls config/deploy
+local.rb
+staging.rb
+production.rb
+```
 
-Edit the settings in ./config/deploy/staging.rb and/or ./config/deploy/production.rb with your own info :
+Edit the settings in { staging.rb } and/or { production.rb } with your own info :
 
 ```ruby
 # Required Settings
@@ -67,13 +79,13 @@ set :wp_debug, true
 set :wp_cache, false
 ```
 
-You can leave ./config/deploy/local.rb alone.
+You can leave { local.rb } alone.
 
 You're good to go!
 
 ### Slack
 
-Slack integration provided by [capistrano-slackify](https://github.com/onthebeach/capistrano-slackify). In slack, ensure you have enabled the [incoming webhooks integration](https://api.slack.com/). Edit in .config/slack.rb with your webhook url provided in the setup instructions : 
+Slack integration provided by [capistrano-slackify](https://github.com/onthebeach/capistrano-slackify). In slack, ensure you have enabled the [incoming webhooks integration](https://api.slack.com/). Edit { config/slack.rb } with your webhook url provided in the setup instructions : 
 
 ```ruby
 # Required Setting
@@ -87,9 +99,31 @@ There are also a number of optional settings you can customize. The task will ru
 
 You can see all described tasks at any time with the command :
 
-	$ cap -T
+``` sh
+$ cap -T
+```
 
-### WordPress Installation
+### Commands
+
+* **cap stage deploy** : 
+* **cap local wp:local:install** : Install WordPress and set up the repo and database
+* **cap stage wp:remote:push** : Deploy the site and push the database and uploads from the local server
+* **cap stage wp:remote:pull** : Clone a remote repository and pull the database and uploads from the stage server
+* **cap stage db:push** : Pushes a local export of the MySQL database to the remote server
+* **cap stage db:pull** : Pulls a remote export of the database and imports to the local server
+* **cap stage uploads:push** : Transfer local uploads content to remote server
+* **cap stage uploads:pull** : Transfer remote uploads content to local server
+
+
+#### cap stage deploy
+
+#### cap local wp:local:install
+
+#### cap stage wp:remote:push
+
+#### cap stage wp:remote:pull
+
+
 
 	$ cap local wp:local:install
 
