@@ -66,11 +66,11 @@ namespace :wp do
 				keys_and_salts = capture("curl -s https://api.wordpress.org/secret-key/1.1/salt/")
 
 				# build the config files
-    			config = ERB.new(File.read("config/templates/wp-config.php.erb")).result(binding)
-    			File.open(File.join(fetch(:local_path), "wp-config.php"), "w") { |f| f.write(config) }
+				config = ERB.new(File.read("config/templates/wp-config.php.erb")).result(binding)
+				File.open(File.join(fetch(:local_path), "wp-config.php"), "w") { |f| f.write(config) }
 
-    			config = ERB.new(File.read("config/templates/.htaccess.erb")).result(binding)
-    			File.open(File.join(fetch(:local_path), ".htaccess"), "w") { |f| f.write(config) }
+				config = ERB.new(File.read("config/templates/.htaccess.erb")).result(binding)
+				File.open(File.join(fetch(:local_path), ".htaccess"), "w") { |f| f.write(config) }
 			end
 		end
 
@@ -89,12 +89,12 @@ namespace :wp do
 				within "#{fetch(:local_path)}" do
 					# create a basic .gitignore and README for the repo
 					config = ERB.new(File.read("config/templates/.gitignore.erb")).result(binding)
-    				File.open(File.join(fetch(:local_path), ".gitignore"), "w") { |f| f.write(config) }
+					File.open(File.join(fetch(:local_path), ".gitignore"), "w") { |f| f.write(config) }
 
 					config = ERB.new(File.read("config/templates/README.md.erb")).result(binding)
-    				File.open(File.join(fetch(:local_path), "README.md"), "w") { |f| f.write(config) }
+					File.open(File.join(fetch(:local_path), "README.md"), "w") { |f| f.write(config) }
 
-    				# initialize the repo, make an initial commit, and push it to the remote repo
+					# initialize the repo, make an initial commit, and push it to the remote repo
 					execute :git, "init"
 					execute :git, "remote add origin #{fetch(:repo_url)}"
 					execute :git, "add -A"
@@ -168,17 +168,17 @@ namespace :wp do
 
 				# create and upload config to remote server
 				db_config = ERB.new(File.read('config/templates/wp-config.php.erb')).result(binding)
-		    	io = StringIO.new(db_config)
-		    	upload! io, File.join(shared_path, "wp-config.php")
+				io = StringIO.new(db_config)
+				upload! io, File.join(shared_path, "wp-config.php")
 
-		    	# create and upload basic .htaccess to remote server
-		    	access_file = ERB.new(File.read('config/templates/.htaccess.erb')).result(binding)
-		    	io = StringIO.new(access_file)
-		    	upload! io, File.join(shared_path, ".htaccess")
-		    end
-	    end
+				# create and upload basic .htaccess to remote server
+				access_file = ERB.new(File.read('config/templates/.htaccess.erb')).result(binding)
+				io = StringIO.new(access_file)
+				upload! io, File.join(shared_path, ".htaccess")
+			end
+		end
 
-	    # set the permissions on files and dirs for the stage wordpress install
+		# set the permissions on files and dirs for the stage wordpress install
 		task :permissions do
 			on roles(:web) do
 				execute :chmod, "-R 777 #{shared_path}/wp-content/uploads"
