@@ -1,6 +1,3 @@
-# Slack Config
-# ============
-
 # Required Settings
 # =================
 
