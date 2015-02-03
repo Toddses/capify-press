@@ -2,44 +2,6 @@ namespace :wp do
 
 	namespace :local do
 
-		desc "Install WordPress locally and set up the repo and database"
-		task :install do
-			# clone the selected version of wordpress to the local server
-			invoke "wp:local:wp_clone"
-
-			# set up the wordpress config files
-			invoke "wp:local:config"
-			invoke "wp:local:permissions"
-
-			# initialize the git repository and make the initial commit
-			invoke "wp:local:init_git"
-
-			# create the local database
-			invoke "wp:local:init_db"
-
-			# give the user some helpful hints on what to do next
-			run_locally do
-				puts ""
-				puts "\033[32mOpen your browser and bring up the local URL to complete WordPress installation."
-			end
-		end
-
-		# clone the official wordpress repo based on the version setting
-		task :wp_clone do
-			run_locally do
-				# inform user we're downloading WordPress
-				puts "\033[32mDownloading WordPress #{fetch(:wp_version)}... this may take several minutes"
-
-				# clone the WordPress repo
-				execute :git, "clone --branch #{fetch(:wp_version)} https://github.com/WordPress/WordPress.git #{fetch(:local_path)}"
-
-				within "#{fetch(:local_path)}" do
-					# get rid of the WordPress repo so we're starting from scratch
-					execute :rm, "-rf .git"
-				end
-			end
-		end
-
 		# clone the project remote repo
 		task :clone do
 			run_locally do
@@ -80,40 +42,6 @@ namespace :wp do
 				execute :mkdir, "-p #{fetch(:local_path)}/wp-content/uploads"
 				execute :chmod, "-R 777 #{fetch(:local_path)}/wp-content/uploads"
 				execute :chmod, "666 #{fetch(:local_path)}/.htaccess"
-			end
-		end
-
-		# initialize the local git repo and create master, staging, dev branches
-		task :init_git do
-			run_locally do
-				within "#{fetch(:local_path)}" do
-					# create a basic .gitignore and README for the repo
-					config = ERB.new(File.read("config/templates/.gitignore.erb")).result(binding)
-					File.open(File.join(fetch(:local_path), ".gitignore"), "w") { |f| f.write(config) }
-
-					config = ERB.new(File.read("config/templates/README.md.erb")).result(binding)
-					File.open(File.join(fetch(:local_path), "README.md"), "w") { |f| f.write(config) }
-
-					# initialize the repo, make an initial commit, and push it to the remote repo
-					execute :git, "init"
-					execute :git, "remote add origin #{fetch(:repo_url)}"
-					execute :git, "add -A"
-					execute :git, "commit -m 'WordPress installation and initial commit.'"
-					execute :git, "push -u origin master"
-					execute :git, "checkout -b staging"
-					execute :git, "push -u origin staging"
-					execute :git, "checkout -b dev"
-					execute :git, "push -u origin dev"
-				end
-			end
-		end
-
-		# create the local database
-		task :init_db do
-			db_local = YAML::load_file('config/database.yml')['local']
-
-			run_locally do
-				execute :mysql, "-h#{db_local['host']} -u#{db_local['username']} -p#{db_local['password']} -e 'CREATE DATABASE IF NOT EXISTS #{db_local['database']};'"
 			end
 		end
 

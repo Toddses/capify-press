@@ -8,7 +8,6 @@ require "./config/slack"
 # =================
 
 set :application, "example"
-set :wp_version, "4.1"
 set :repo_url, "git@github.com:User/example.git"
 set :admin_email, "user@example.com"
 

@@ -29,7 +29,6 @@ Edit the required settings in `config/deploy.rb`:
 # =================
 
 set :application, "example"
-set :wp_version, "4.1"
 set :repo_url, "git@github.com:User/example.git"
 set :admin_email, "user@example.com"
 
@@ -46,11 +45,10 @@ $ cp ex-database.yml database.yml
 
 Edit `database.yml` with your own details for each environment. Prefix is the table prefix WordPress will use for each environment. Do not include this file in any repo!
 
-Three environments will be created by default:
+Two environments will be created by default:
 
 ``` sh
 $ ls config/deploy
-local.rb
 staging.rb
 production.rb
 ```
@@ -76,8 +74,6 @@ set :branch, "master"
 set :wp_debug, true
 set :wp_cache, false
 ```
-
-You can leave `local.rb` alone. For now, it is mostly for semantic purposes.
 
 You're good to go!
 
@@ -112,7 +108,6 @@ $ cap -T
 
 ### Commands
 
-* **cap local wp:local:install**: Install WordPress locally and set up the repo and database
 * **cap stage deploy**: Deploy the site from the repository to the remote server
 * **cap stage wp:remote:push**: Deploy the site and push the database and uploads from the local server
 * **cap stage wp:remote:pull**: Clone a remote repository and pull the database and uploads from the stage server
@@ -121,9 +116,9 @@ $ cap -T
 * **cap stage uploads:push**: Transfer local uploads content to remote server
 * **cap stage uploads:pull**: Transfer remote uploads content to local server
 
-Each of these tasks takes care of the basic legwork for you. Installing WordPress will create the database, if it doesn't exist, set up your local config files (`wp-config.php` and `.htaccess`), start your repo with a `.gitignore` that's good for WordPress and a basic README, and push it to the remote repo with an initial commit. All you have to do is visit the local site in a browser and complete the WordPress installation.
-
 Deploying will create the config files for the stage automatically.
+
+Pushing/pulling with the `wp:remote` command will create the remote or local config files automatically. Pushing will deploy the site first with the `deploy` command.
 
 Pushing/pulling the database will replace the URLs in the database, as well as the table prefixes, so you can bring up the site with no additional set up necessary. **NOTE**: Push and Pull currently **DROP** the existing tables if they exist. This means you will **ovewrite all data**. So be sure you want to perform this action before you run the task. It is in my future plans to create tasks for more of a merging option for incremental database updates as opposed to full data replacement.
 
